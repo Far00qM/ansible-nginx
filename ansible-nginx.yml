@@ -10,3 +10,11 @@
     command: hostname
   - name: ensure aptitude is installed
     command: apt-get -y install nginx
+  - name: copy file
+    copy:
+      src: ./index.nginx-debian.html
+      dest: /var/www/html/index.nginx-debian.html
+  - name: start nginx
+    service:
+      name: nginx
+      state: started

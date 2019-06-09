@@ -1,0 +1,26 @@
+server {
+    	listen 80 ;
+        return 301 https://$server_name$request_uri;
+}
+
+
+server {
+        listen 80 default_server ;
+        listen 443 ;
+        server_name example.com www.example.com;
+	error_page 497 https://$host:$server_port$request_uri;
+
+
+        root /var/www/html;
+        index index.nginx-debian.html index.html index.htm index.nginx-debian.html;
+
+        ssl on;
+        ssl_certificate ./public.pem;
+        ssl_certificate_key ./private.key;
+
+        location / {
+                index index.nginx-debian.html ;
+        }
+
+
+}

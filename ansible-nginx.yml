@@ -3,7 +3,7 @@
 - name: run the playbook tasks on the localhost
   hosts: 127.0.0.1
   connection: local
-  become: yes
+#  become: yes
   tasks:
 
   - name: print out the hostname of target
@@ -14,6 +14,21 @@
     copy:
       src: ./index.nginx-debian.html
       dest: /var/www/html/index.nginx-debian.html
+
+  - name: copy default file
+    copy:
+      src: ./default
+      dest: /etc/nginx/sites-available/default
+
+  - name: copy self signed cert files
+    copy:
+      src: ./public.pem
+      dest: /etc/nginx/
+  - name: copy self signed cert files
+    copy:
+      src: ./private.key
+      dest: /etc/nginx/
+
   - name: start nginx
     service:
       name: nginx

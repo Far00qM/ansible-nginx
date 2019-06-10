@@ -5,8 +5,8 @@ server {
 
 
 server {
-        listen 80 default ;
-        listen 443 ;
+        listen 443 ssl ;
+        listen 80 default;
         server_name example.com www.example.com;
 	error_page 497 https://$host:$server_port$request_uri;
 
